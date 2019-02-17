@@ -570,16 +570,16 @@ public class HealthPlugin extends CordovaPlugin {
         } else if (nutritionscope == READ_WRITE_PERMS) {
             builder.addScope(new Scope(Scopes.FITNESS_NUTRITION_READ_WRITE));
         }
-        if (bloodgucosescope == READ_PERMS) {
-            builder.addScope(new Scope(Scopes.FITNESS_BLOOD_GLUCOSE_READ));
-        } else if (bloodgucosescope == READ_WRITE_PERMS) {
-            builder.addScope(new Scope(Scopes.FITNESS_BLOOD_GLUCOSE_READ_WRITE));
-        }
-        if (bloodpressurescope == READ_PERMS) {
-            builder.addScope(new Scope(Scopes.FITNESS_BLOOD_PRESSURE_READ));
-        } else if (bloodpressurescope == READ_WRITE_PERMS) {
-            builder.addScope(new Scope(Scopes.FITNESS_BLOOD_PRESSURE_READ_WRITE));
-        }
+        // if (bloodgucosescope == READ_PERMS) {
+        //     builder.addScope(new Scope(Scopes.FITNESS_BLOOD_GLUCOSE_READ));
+        // } else if (bloodgucosescope == READ_WRITE_PERMS) {
+        //     builder.addScope(new Scope(Scopes.FITNESS_BLOOD_GLUCOSE_READ_WRITE));
+        // }
+        // if (bloodpressurescope == READ_PERMS) {
+        //     builder.addScope(new Scope(Scopes.FITNESS_BLOOD_PRESSURE_READ));
+        // } else if (bloodpressurescope == READ_WRITE_PERMS) {
+        //     builder.addScope(new Scope(Scopes.FITNESS_BLOOD_PRESSURE_READ_WRITE));
+        // }
 
         builder.addConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
 
