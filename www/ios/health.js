@@ -6,7 +6,6 @@ var Health = function () {
 
 var dataTypes = [];
 dataTypes['steps'] = 'HKQuantityTypeIdentifierStepCount';
-dataTypes['stairs'] = 'HKQuantityTypeIdentifierFlightsClimbed';
 dataTypes['distance'] = 'HKQuantityTypeIdentifierDistanceWalkingRunning'; // and HKQuantityTypeIdentifierDistanceCycling
 dataTypes['calories'] = 'HKQuantityTypeIdentifierActiveEnergyBurned'; // and HKQuantityTypeIdentifierBasalEnergyBurned
 dataTypes['calories.active'] = 'HKQuantityTypeIdentifierActiveEnergyBurned';
@@ -14,7 +13,6 @@ dataTypes['calories.basal'] = 'HKQuantityTypeIdentifierBasalEnergyBurned';
 dataTypes['height'] = 'HKQuantityTypeIdentifierHeight';
 dataTypes['weight'] = 'HKQuantityTypeIdentifierBodyMass';
 dataTypes['heart_rate'] = 'HKQuantityTypeIdentifierHeartRate';
-dataTypes['heart_rate.variability'] = 'HKQuantityTypeIdentifierHeartRateVariabilitySDNN';
 dataTypes['fat_percentage'] = 'HKQuantityTypeIdentifierBodyFatPercentage';
 dataTypes['activity'] = 'HKWorkoutTypeIdentifier'; // and HKCategoryTypeIdentifierSleepAnalysis
 dataTypes['workouts'] = 'HKWorkoutTypeIdentifier';
@@ -52,7 +50,6 @@ units['calories.basal'] = 'kcal';
 units['height'] = 'm';
 units['weight'] = 'kg';
 units['heart_rate'] = 'count/min';
-units['heart_rate.variability'] = 'ms';
 units['fat_percentage'] = '%';
 units['nutrition'] = ['g', 'ml', 'kcal'];
 units['nutrition.calories'] = 'kcal';
@@ -445,7 +442,7 @@ Health.prototype.store = function (data, onSuccess, onError) {
     onError('Gender is not writeable');
   } else if (data.dataType === 'date_of_birth') {
     onError('Date of birth is not writeable');
-  } else if (data.dataType === 'activity' || data.dataType === 'workouts') {
+  } else if (data.dataType === 'activity') {
     // sleep activity, needs a different call than workout
     if ((data.value === 'sleep') ||
     (data.value === 'sleep.light') ||
@@ -465,7 +462,6 @@ Health.prototype.store = function (data, onSuccess, onError) {
     } else {
       // some other kind of workout
       data.activityType = data.value;
-	  data.requestReadPermission = false // do not ask for read permission too
       if (data.calories) {
         data.energy = data.calories;
         data.energyUnit = 'kcal';
